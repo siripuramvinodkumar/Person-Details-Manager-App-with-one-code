@@ -1,0 +1,4 @@
+Explanation
+The program allows the user to add, view, search, and delete persons.
+Data is saved persistently using file handling.
+When restarted, previously saved persons can be retrieved.
