@@ -1,0 +1,102 @@
+output of c++ code:
+Here’s an example of how the program works when executed:
+
+Sample Run
+pgsql
+Copy
+Edit
+1. Add Person
+2. View All Persons
+3. Search Person
+4. Delete Person
+5. Exit
+Enter choice: 1
+Enter Name: John Doe
+Enter Age: 30
+Enter Address: 123 Street, NY
+Enter Phone: 9876543210
+Enter Email: john@example.com
+Person added successfully!
+
+1. Add Person
+2. View All Persons
+3. Search Person
+4. Delete Person
+5. Exit
+Enter choice: 1
+Enter Name: Alice Smith
+Enter Age: 25
+Enter Address: 456 Avenue, LA
+Enter Phone: 1234567890
+Enter Email: alice@example.com
+Person added successfully!
+
+1. Add Person
+2. View All Persons
+3. Search Person
+4. Delete Person
+5. Exit
+Enter choice: 2
+
+Name: John Doe
+Age: 30
+Address: 123 Street, NY
+Phone: 9876543210
+Email: john@example.com
+-----------------------
+
+Name: Alice Smith
+Age: 25
+Address: 456 Avenue, LA
+Phone: 1234567890
+Email: alice@example.com
+-----------------------
+
+1. Add Person
+2. View All Persons
+3. Search Person
+4. Delete Person
+5. Exit
+Enter choice: 3
+Enter name to search: Alice Smith
+
+Name: Alice Smith
+Age: 25
+Address: 456 Avenue, LA
+Phone: 1234567890
+Email: alice@example.com
+-----------------------
+
+1. Add Person
+2. View All Persons
+3. Search Person
+4. Delete Person
+5. Exit
+Enter choice: 4
+Enter name to delete: John Doe
+Person deleted successfully!
+
+1. Add Person
+2. View All Persons
+3. Search Person
+4. Delete Person
+5. Exit
+Enter choice: 2
+
+Name: Alice Smith
+Age: 25
+Address: 456 Avenue, LA
+Phone: 1234567890
+Email: alice@example.com
+-----------------------
+
+1. Add Person
+2. View All Persons
+3. Search Person
+4. Delete Person
+5. Exit
+Enter choice: 5
+Explanation
+The program allows the user to add, view, search, and delete persons.
+Data is saved persistently using file handling.
+When restarted, previously saved persons can be retrieved.
