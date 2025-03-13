@@ -1,0 +1,100 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct Person {
+    string name;
+    int age;
+    string address;
+    string phone;
+    string email;
+};
+
+vector<Person> persons;
+
+void saveToFile() {
+    ofstream file("persons.dat", ios::binary);
+    if (!file) {
+        cout << "Error opening file!" << endl;
+        return;
+    }
+    int size = persons.size();
+    file.write((char*)&size, sizeof(size));
+    file.write((char*)persons.data(), size * sizeof(Person));
+    file.close();
+}
+
+void loadFromFile() {
+    ifstream file("persons.dat", ios::binary);
+    if (!file) return;
+    int size;
+    file.read((char*)&size, sizeof(size));
+    persons.resize(size);
+    file.read((char*)persons.data(), size * sizeof(Person));
+    file.close();
+}
+
+void addPerson() {
+    Person p;
+    cout << "Enter Name: "; cin.ignore(); getline(cin, p.name);
+    cout << "Enter Age: "; cin >> p.age;
+    cout << "Enter Address: "; cin.ignore(); getline(cin, p.address);
+    cout << "Enter Phone: "; cin >> p.phone;
+    cout << "Enter Email: "; cin >> p.email;
+    persons.push_back(p);
+    saveToFile();
+    cout << "Person added successfully!\n";
+}
+
+void viewPersons() {
+    for (const auto &p : persons) {
+        cout << "\nName: " << p.name << "\nAge: " << p.age << "\nAddress: " << p.address;
+        cout << "\nPhone: " << p.phone << "\nEmail: " << p.email << "\n-----------------------\n";
+    }
+}
+
+void searchPerson() {
+    string name;
+    cout << "Enter name to search: "; cin.ignore(); getline(cin, name);
+    for (const auto &p : persons) {
+        if (p.name == name) {
+            cout << "\nName: " << p.name << "\nAge: " << p.age << "\nAddress: " << p.address;
+            cout << "\nPhone: " << p.phone << "\nEmail: " << p.email << "\n-----------------------\n";
+            return;
+        }
+    }
+    cout << "Person not found!\n";
+}
+
+void deletePerson() {
+    string name;
+    cout << "Enter name to delete: "; cin.ignore(); getline(cin, name);
+    for (auto it = persons.begin(); it != persons.end(); ++it) {
+        if (it->name == name) {
+            persons.erase(it);
+            saveToFile();
+            cout << "Person deleted successfully!\n";
+            return;
+        }
+    }
+    cout << "Person not found!\n";
+}
+
+int main() {
+    loadFromFile();
+    int choice;
+    while (true) {
+        cout << "\n1. Add Person\n2. View All Persons\n3. Search Person\n4. Delete Person\n5. Exit\nEnter choice: ";
+        cin >> choice;
+        switch (choice) {
+            case 1: addPerson(); break;
+            case 2: viewPersons(); break;
+            case 3: searchPerson(); break;
+            case 4: deletePerson(); break;
+            case 5: return 0;
+            default: cout << "Invalid choice!\n";
+        }
+    }
+}
